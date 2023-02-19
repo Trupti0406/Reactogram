@@ -1,0 +1,14 @@
+.navbar {
+  height: 75px !important;
+}
+
+.searchBox {
+  width: 30vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchBox {
+    display: none;
+    
+}
+}

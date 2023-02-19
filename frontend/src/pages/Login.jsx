@@ -3,6 +3,7 @@ import socialDesktop from "../images/social-desktop.PNG";
 import socialMobile from "../images/social-mobile.PNG";
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -47,7 +48,12 @@ const Login = () => {
                     <span className="text-muted fs-6">
                       Don't have an account?
                     </span>
-                    <span className="ms-1 text-info fw-semibold">Sign Up</span>
+                    <Link
+                      to="/signup"
+                      className="ms-1 text-info fw-ligh text-decoration-none"
+                    >
+                      Sign Up
+                    </Link>
                   </button>
                 </div>
               </form>
