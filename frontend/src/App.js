@@ -8,7 +8,7 @@ import Signup from "./pages/Signup";
 
 function App() {
   return (
-    <>
+    <div className="app-bg">
       <Navbar />
       <BrowserRouter>
         <Routes>
@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/posts" element={<PostOverview />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

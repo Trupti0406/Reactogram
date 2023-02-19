@@ -1,0 +1,13 @@
+.profile-pic{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.location{
+    margin-top: -14px;
+    font-size: 13px;
+}
+.post-img{
+    border-radius: 14px;
+}
