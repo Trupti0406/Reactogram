@@ -1,15 +1,16 @@
 import React from "react";
 import "./Navbar.css";
 import Logo from "../images/logo.PNG";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <>
       <nav className="navbar bg-white shadow">
         <div className="container-fluid">
-          <a className="navbar-brand ms-5">
+          <Link to="/" className="navbar-brand ms-5">
             <img src={Logo} alt="logo" height="45px" />
-          </a>
+          </Link>
           <form className="d-flex me-sm-1 me-md-5" role="search">
             <input
               className="searchBox form-control me-5 text-muted"
@@ -26,9 +27,9 @@ const Navbar = () => {
               <a className="nav-link fs-5" href="#">
                 <i className="fa-regular fa-heart"></i>
               </a>
-              <a className="nav-link fs-5" href="#">
+              <Link to="/myProfile" className="nav-link fs-5">
                 <i className="fa-solid fa-circle"></i>
-              </a>
+              </Link>
             </div>
           </form>
         </div>
