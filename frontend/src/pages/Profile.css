@@ -28,16 +28,22 @@
   padding: 14px;
 }
 
-.card-img-top {
-  /* width: 300px;
-   height: 300px;
-   object-fit: cover; */
+.card{
+  cursor: pointer;
+}
+
+.upload-box{
+  height: 330px;
+  width: 330px;
+  border: 4px dotted gray;
+  border-radius: 10px;
 }
 
 @media only screen and (max-width: 450px) {
   .container {
     width: 100vw;
     padding: 0 !important;
+    
   }
   .stats {
     gap: 1 !important;

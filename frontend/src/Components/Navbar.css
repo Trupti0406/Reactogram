@@ -11,6 +11,19 @@
   display: none;
 }
 
+.navbar-profile-pic {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: -5px;
+}
+
+.dropdown-menu {
+  left: -25px !important;
+  min-width:max-content;
+}
+
 @media only screen and (max-width: 600px) {
   .searchBox {
     display: none;
@@ -22,4 +35,7 @@
     display: block;
     margin-top: 6px;
   }
+  .dropdown-menu {
+  left: -55px !important;
+}
 }

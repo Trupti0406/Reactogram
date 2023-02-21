@@ -27,9 +27,33 @@ const Navbar = () => {
               <a className="nav-link fs-5" href="#">
                 <i className="fa-regular fa-heart"></i>
               </a>
-              <Link to="/myProfile" className="nav-link fs-5">
-                <i className="fa-solid fa-circle"></i>
-              </Link>
+
+              <div className="dropdown">
+                <a
+                  className="btn"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  <img
+                    className="navbar-profile-pic"
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                    alt="profile-pic"
+                  />
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link to="/myProfile" className="dropdown-item">
+                      My Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </form>
         </div>

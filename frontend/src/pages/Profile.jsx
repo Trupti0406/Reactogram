@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import "./Profile.css";
+import horizontalMoreAction from "../images/horizontalMoreAction.PNG";
 
 const Profile = () => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+    const [showPost, setShowPost] = useState(false);
+    const handlePostClose = () => setShowPost(false);
+    const handlePostShow = () => setShowPost(true);
+
   return (
     <div className="container shadow mt-3 p-5">
       <div className="row">
@@ -39,7 +50,10 @@ const Profile = () => {
             <button className="custom-btn custom-btn-white shadow-sm">
               <span className="fw-semibold fs-6">Edit Profile</span>
             </button>
-            <button className="custom-btn custom-btn-white shadow-sm">
+            <button
+              className="custom-btn custom-btn-white shadow-sm"
+              onClick={handlePostShow}
+            >
               <span className="fw-semibold fs-6">Upload Post</span>
             </button>
           </div>
@@ -54,7 +68,7 @@ const Profile = () => {
 
       <div className="row mb-4">
         <div className="col-md-4 col-sm-12">
-          <div className="card">
+          <div className="card" onClick={handleShow}>
             <img
               src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
               alt=""
@@ -111,37 +125,177 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col-md-4 col-sm-12">
-          <div className="card">
-            <img
-              src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt=""
-              className="card-img-top"
-            />
+
+      <Modal show={show} onHide={handleClose} size="lg">
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body>
+          <div className="row">
+            <div className="col-md-6">
+              <div id="carouselExampleIndicators" className="carousel slide">
+                <div className="carousel-indicators">
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="0"
+                    className="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                  ></button>
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+                  ></button>
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"
+                  ></button>
+                </div>
+                <div className="carousel-inner">
+                  <div className="carousel-item active">
+                    <img
+                      src="https://images.unsplash.com/photo-1575881875475-31023242e3f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c3VufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                      className="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div className="carousel-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1477005264461-b0e201668d92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                      className="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div className="carousel-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                      className="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                </div>
+                <button
+                  className="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    className="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden">Previous</span>
+                </button>
+                <button
+                  className="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="next"
+                >
+                  <span
+                    className="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="card shadow-sm">
+                <div className="card-body px-2">
+                  <div className="row">
+                    <div className="col-6 d-flex">
+                      <img
+                        className="profile-pic p-1"
+                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                        alt="profile-pic"
+                      />
+                      <div className="mt-2 ms-2">
+                        <p className="fs-6 fw-bold">_._dexter</p>
+                        <p className="location">Mumbai, India</p>
+                      </div>
+                      <div className="dropdown ms-5 ">
+                        <a
+                          className="btn"
+                          href="#"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                        >
+                          <img alt="more action" src={horizontalMoreAction} />
+                        </a>
+                        <ul className="dropdown-menu">
+                          <li>
+                            <a className="dropdown-item" href="#">
+                              <i className="fa-regular fa-pen-to-square px-2"></i>
+                              Edit Post
+                            </a>
+                          </li>
+                          <li>
+                            <a className="dropdown-item" href="#">
+                              <i className="fa-solid fa-trash px-2"></i>Delete
+                              Post
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12">
+                      <span className="ps-2 text-muted">2 Hours Ago</span>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 ms-2 mt-2">
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Blanditiis dignissimos aliquid id! Ut, consequatur
+                        iusto?
+                      </p>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6 d-flex">
+                      <i className="ps-2 fs-4 fa-regular fa-heart"></i>
+                      <i className="ps-2 fs-4 fa-regular fa-comment"></i>
+                      <i className="ps-2 fs-4 fa-solid fa-location-arrow"></i>
+                    </div>
+                    <div className="col-12 mt-3 ms-2">
+                      <span className="pe-3 fs-6 fw-bold ">200 likes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="col-md-4 col-sm-12">
-          <div className="card">
-            <img
-              src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt=""
-              className="card-img-top"
-            />
+        </Modal.Body>
+      </Modal>
+
+      {/* Modal for uploading an image */}
+      <Modal show={showPost} onHide={handlePostClose} size="lg" centered>
+        <Modal.Header closeButton>
+          <span className="fw-bold fs-6">Upload Post</span>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="row">
+            <div className="col-md-6 col-sm-12">
+              <div className="upload-box">
+
+              </div>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <div className="row">
+                <div className="col-md-6 col-sm-12">LEFT</div>
+                <div className="col-md-6 col-sm-12">LEFT</div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="col-md-4 col-sm-12">
-          <div className="card">
-            <img
-              src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt=""
-              className="card-img-top"
-            />
-          </div>
-        </div>
-      </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
-
 export default Profile;
