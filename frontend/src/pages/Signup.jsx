@@ -54,7 +54,10 @@ const Signup = () => {
                 </div>
                 <div className="mt-3 mb-5 d-grid">
                   <button className="btn custom-btn custom-btn-white">
-                    <span className="text-muted fs-6">
+                    <span
+                      className="text-muted fs-6"
+                      
+                    >
                       Already have an account?
                     </span>
                     <Link

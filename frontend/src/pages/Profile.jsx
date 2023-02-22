@@ -283,12 +283,30 @@ const Profile = () => {
         className="uploadModal"
       >
         <Modal.Header closeButton>
-          <span className="fw-bold fs-6">Upload Post</span>
+          <span className="fw-bold fs-6"></span>
         </Modal.Header>
         <Modal.Body>
           <div className="row">
             <div className="col-lg-6 col-md-12 col-sm-12">
-              <div className="upload-box"></div>
+              <div className="upload-box">
+                <div className="dropzoneContainer">
+                  <input
+                    type="file"
+                    id="drop_zone"
+                    className="FileUpload"
+                    accept=".jpg, png,.gif"
+                    onchange="handleFileSelect(this) "
+                  />
+                  <div className="dropzoneOverlay text-muted">
+                    <i className="fa-solid fa-cloud-arrow-up fs-2 "></i>
+                    <br />
+                    <br />
+                    <p className="fs-5 fw-semibold" style={{ color: "#ed2a7e" }}>
+                      Upload Photo from your device
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-lg-6 col-md-12  col-sm-12 d-flex flex-column justify-content-between">
               <div className="row">
@@ -313,7 +331,8 @@ const Profile = () => {
                       placeholder="Add Location"
                     />
                     <label for="floatingInput">
-                      <i class="fa-solid fa-location-pin pe-2"></i>Add Location
+                      <i className="fa-solid fa-location-pin pe-2"></i>Add
+                      Location
                     </label>
                   </div>
                 </div>

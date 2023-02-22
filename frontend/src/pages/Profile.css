@@ -38,9 +38,9 @@
   border: 4px dotted gray;
   border-radius: 10px;
   margin: auto;
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
 }
 
 .custom-btn-pink {
@@ -61,6 +61,17 @@
   box-shadow: none !important;
 }
 
+
+.dropzoneOverlay {
+text-align: center;
+cursor: pointer;
+margin-bottom: 50px;
+}
+.FileUpload {
+opacity: 0;
+/* position: relative; */
+z-index: 1;
+}
 
 @media only screen and (max-width: 450px) {
   .container {

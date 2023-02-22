@@ -19,7 +19,7 @@ const Navbar = () => {
             />
             <div className="d-flex  gap-3">
               <a className="nav-link fs-5" href="#">
-                <i class="searchIcon fa-solid fa-magnifying-glass"></i>
+                <i className="searchIcon fa-solid fa-magnifying-glass"></i>
               </a>
               <a className="nav-link fs-5" href="#">
                 <i className="fa-solid fa-house"></i>
