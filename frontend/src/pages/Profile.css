@@ -37,6 +37,10 @@
   width: 330px;
   border: 4px dotted gray;
   border-radius: 10px;
+  margin: auto;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
 .custom-btn-pink {
@@ -56,6 +60,8 @@
   border-radius: 0 !important;
   box-shadow: none !important;
 }
+
+
 @media only screen and (max-width: 450px) {
   .container {
     width: 100vw;
@@ -68,4 +74,11 @@
   .buttons {
     justify-content: space-between !important;
   }
+  .uploadModal{
+  padding: 20px;
+}
+.upload-box {
+  height: 280px;
+  width: 285px;
+}
 }

@@ -275,16 +275,22 @@ const Profile = () => {
       </Modal>
 
       {/* Modal for uploading an image */}
-      <Modal show={showPost} onHide={handlePostClose} size="lg" centered>
+      <Modal
+        show={showPost}
+        onHide={handlePostClose}
+        size="lg"
+        centered
+        className="uploadModal"
+      >
         <Modal.Header closeButton>
           <span className="fw-bold fs-6">Upload Post</span>
         </Modal.Header>
         <Modal.Body>
           <div className="row">
-            <div className="col-md-6 col-sm-12">
+            <div className="col-lg-6 col-md-12 col-sm-12">
               <div className="upload-box"></div>
             </div>
-            <div className="col-md-6  col-sm-12 d-flex flex-column justify-content-between">
+            <div className="col-lg-6 col-md-12  col-sm-12 d-flex flex-column justify-content-between">
               <div className="row">
                 <div className="col-sm-12 mb-3">
                   <div className="form-floating">
