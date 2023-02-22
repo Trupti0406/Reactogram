@@ -5,6 +5,7 @@
 .searchBox {
   width: 30vw;
   padding: 10px;
+  box-shadow: none !important;
 }
 
 .searchIcon {

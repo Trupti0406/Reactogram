@@ -9,9 +9,9 @@ const Profile = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-    const [showPost, setShowPost] = useState(false);
-    const handlePostClose = () => setShowPost(false);
-    const handlePostShow = () => setShowPost(true);
+  const [showPost, setShowPost] = useState(false);
+  const handlePostClose = () => setShowPost(false);
+  const handlePostShow = () => setShowPost(true);
 
   return (
     <div className="container shadow mt-3 p-5">
@@ -282,14 +282,42 @@ const Profile = () => {
         <Modal.Body>
           <div className="row">
             <div className="col-md-6 col-sm-12">
-              <div className="upload-box">
-
-              </div>
+              <div className="upload-box"></div>
             </div>
-            <div className="col-md-6 col-sm-12">
+            <div className="col-md-6  col-sm-12 d-flex flex-column justify-content-between">
               <div className="row">
-                <div className="col-md-6 col-sm-12">LEFT</div>
-                <div className="col-md-6 col-sm-12">LEFT</div>
+                <div className="col-sm-12 mb-3">
+                  <div className="form-floating">
+                    <textarea
+                      type="text"
+                      className="form-control uploadInputs"
+                      id="floatingInput"
+                      placeholder="Add Caption"
+                    />
+                    <label for="floatingInput">Add Caption</label>
+                  </div>
+                </div>
+
+                <div className="col-sm-12">
+                  <div className="form-floating mb-3">
+                    <input
+                      type="text"
+                      className="form-control uploadInputs"
+                      id="floatingInput"
+                      placeholder="Add Location"
+                    />
+                    <label for="floatingInput">
+                      <i class="fa-solid fa-location-pin pe-2"></i>Add Location
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-sm-12">
+                  <div className="custom-btn custom-btn-pink float-end">
+                    <span className="fs-6 fw-700">POST</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
