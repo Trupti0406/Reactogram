@@ -60,9 +60,10 @@ router.post("/login", (req, res) => {
         return res.status(401).json({ error: "Invalid Credentials" });
       }
       bcryptjs
-        .compare(password, userInDB.password)
+        .compare(password, userInDB.password) //comparing password
         .then((didMatch) => {
           if (didMatch) {
+            // In sign method we can pss any data that we want as a part of our token
             const jwtToken = jwt.sign({ _id: userInDB._id }, JWT_SECRET);
             const userInfo = {
               _id: userInDB._id,

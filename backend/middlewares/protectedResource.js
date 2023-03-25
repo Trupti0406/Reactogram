@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const mongoose = require("mongoose");
-const UserModel = require("UserModel");
+const UserModel = mongoose.model("UserModel");
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
@@ -15,9 +15,9 @@ module.exports = (req, res, next) => {
       return res.status(401).json({ error: "User Not Logged In" });
     }
     const { _id } = payload;
-    UserModel.findByID(_id).then((debUSer) => {
-      req.user = debUSer;
-      next();
+    UserModel.findById(_id).then((dbUser) => {
+      req.user = dbUser;
+      next(); //goed to the next middlewear or goes to the next API being hit
     });
   });
 };
