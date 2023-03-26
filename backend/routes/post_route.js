@@ -78,4 +78,73 @@ router.delete("/deletepost/:postId", protectedRoute, (req, res) => {
     });
 });
 
+// Like or unlike post API, updare
+router.put("/like", protectedRoute, (req, res) => {
+  PostModel.findByIdAndUpdate(
+    req.body.postId,
+    {
+      $push: { likes: req.user._id },
+    },
+    {
+      new: true, //returns the updated recored i.e. liked
+    }
+  )
+    .populate("author", "_id fullName")
+    .exec((error, result) => {
+      if (error) {
+        return res.status(400).json({ error: error });
+      } else {
+        res.json(result);
+      }
+    });
+});
+
+// Unlike
+router.put("/unlike", protectedRoute, (req, res) => {
+  PostModel.findByIdAndUpdate(
+    req.body.postId,
+    {
+      // USing pull here because our likes array has already been created
+      $pull: { likes: req.user._id },
+    },
+    {
+      new: true, //returns the updated recored i.e. liked
+    }
+  )
+    .populate("author", "_id fullName")
+    .exec((error, result) => {
+      if (error) {
+        return res.status(400).json({ error: error });
+      } else {
+        res.json(result);
+      }
+    });
+});
+
+// Comment API
+router.put("/comment", protectedRoute, (req, res) => {
+  const comment = {
+    commentText: req.body.commentText,
+    commentedBy: req.user._id,
+  };
+  PostModel.findByIdAndUpdate(
+    req.body.postId,
+    {
+      // USing pull here because our likes array has already been created
+      $push: { comments: comment },
+    },
+    {
+      new: true, //returns the updated recored i.e. liked
+    }
+  )
+    .populate("author", "_id fullName")
+    .exec((error, result) => {
+      if (error) {
+        return res.status(400).json({ error: error });
+      } else {
+        res.json(result);
+      }
+    });
+});
+
 module.exports = router;
