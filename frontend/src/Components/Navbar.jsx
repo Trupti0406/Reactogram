@@ -2,8 +2,20 @@ import React from "react";
 import "./Navbar.css";
 import Logo from "../images/logo.PNG";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  // To see ig the user exists or noy, so that accordingly we can hide the dropdown
+  // This is how we get data from store
+  const user = useSelector((state) => state.userReducer);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    dispatch({ type: "LOGIN_ERROR" });
+  };
+
   return (
     <>
       <nav className="navbar bg-white shadow">
@@ -18,41 +30,55 @@ const Navbar = () => {
               placeholder="Search"
             />
             <div className="d-flex  gap-3">
-              <a className="nav-link fs-5" href="#">
+              <Link className="nav-link fs-5">
                 <i className="searchIcon fa-solid fa-magnifying-glass"></i>
-              </a>
-              <a className="nav-link fs-5" href="#">
+              </Link>
+              <Link className="nav-link fs-5">
                 <i className="fa-solid fa-house"></i>
-              </a>
-              <a className="nav-link fs-5" href="#">
-                <i className="fa-regular fa-heart"></i>
-              </a>
+              </Link>
+              {user ? (
+                <Link className="nav-link fs-5">
+                  <i className="fa-regular fa-heart"></i>
+                </Link>
+              ) : (
+                ""
+              )}
 
               <div className="dropdown">
-                <a
-                  className="btn"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                >
-                  <img
-                    className="navbar-profile-pic"
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                    alt="profile-pic"
-                  />
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link to="/myProfile" className="dropdown-item">
-                      My Profile
+                {user ? (
+                  <>
+                    {" "}
+                    <Link
+                      className="btn"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                    >
+                      <img
+                        className="navbar-profile-pic"
+                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                        alt="profile-pic"
+                      />
                     </Link>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <Link to="/myProfile" className="dropdown-item">
+                          My Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="/login"
+                          onClick={() => logout()}
+                        >
+                          Logout
+                        </Link>
+                      </li>
+                    </ul>
+                  </>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </form>

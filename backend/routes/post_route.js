@@ -137,7 +137,9 @@ router.put("/comment", protectedRoute, (req, res) => {
       new: true, //returns the updated recored i.e. liked
     }
   )
-    .populate("author", "_id fullName")
+    // to see who commented the comment
+    .populate("comments.commentedBy", "_id fullName") //comment owner
+    .populate("author", "_id fullName") //post owner
     .exec((error, result) => {
       if (error) {
         return res.status(400).json({ error: error });

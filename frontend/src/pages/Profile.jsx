@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./Profile.css";
 import horizontalMoreAction from "../images/horizontalMoreAction.PNG";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [show, setShow] = useState(false);
@@ -28,7 +29,7 @@ const Profile = () => {
             UI/UX Designer @internshala | Follow @johndoe
           </div>
           <div className="ms-3 fs-5">
-            My portfolio on <a href="#"> www.portfolio.com</a>
+            My portfolio on <Link> www.portfolio.com</Link>
           </div>
         </div>
         <div className="col-md-6 d-flex flex-column justify-content-between mt-2">
@@ -218,26 +219,25 @@ const Profile = () => {
                         <p className="location">Mumbai, India</p>
                       </div>
                       <div className="dropdown ms-5 ">
-                        <a
+                        <Link
                           className="btn"
-                          href="#"
                           role="button"
                           data-bs-toggle="dropdown"
                         >
                           <img alt="more action" src={horizontalMoreAction} />
-                        </a>
+                        </Link>
                         <ul className="dropdown-menu">
                           <li>
-                            <a className="dropdown-item" href="#">
+                            <Link className="dropdown-item">
                               <i className="fa-regular fa-pen-to-square px-2"></i>
                               Edit Post
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a className="dropdown-item" href="#">
+                            <Link className="dropdown-item">
                               <i className="fa-solid fa-trash px-2"></i>Delete
                               Post
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </div>
@@ -301,7 +301,10 @@ const Profile = () => {
                     <i className="fa-solid fa-cloud-arrow-up fs-2 "></i>
                     <br />
                     <br />
-                    <p className="fs-5 fw-semibold" style={{ color: "#ed2a7e" }}>
+                    <p
+                      className="fs-5 fw-semibold"
+                      style={{ color: "#ed2a7e" }}
+                    >
                       Upload Photo from your device
                     </p>
                   </div>

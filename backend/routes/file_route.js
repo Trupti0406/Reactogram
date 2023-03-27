@@ -44,7 +44,7 @@ const downloadFile = (req, res) => {
 
   res.download(path + fileName, (error) => {
     if (error) {
-      req.status(500).send({ message: "File cannot br downloaded" });
+      req.status(500).send({ message: "File cannot br downloaded" + error });
     }
   });
 };
