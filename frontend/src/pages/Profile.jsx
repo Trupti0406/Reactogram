@@ -6,6 +6,9 @@ import horizontalMoreAction from "../images/horizontalMoreAction.PNG";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
+  const [image, setImage] = useState({ preview: "", data: "" });
+
+  //  ================= frontend state variables =================
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -13,6 +16,15 @@ const Profile = () => {
   const [showPost, setShowPost] = useState(false);
   const handlePostClose = () => setShowPost(false);
   const handlePostShow = () => setShowPost(true);
+  //  ================= frontend state variables =================
+
+  const handleFileSelect = (event) => {
+    const img = {
+      preview: URL.createObjectURL(event.target.files[0]),
+      data: event.target.files[0],
+    };
+    setImage(img);
+  };
 
   return (
     <div className="container shadow mt-3 p-5">
@@ -291,13 +303,22 @@ const Profile = () => {
               <div className="upload-box">
                 <div className="dropzoneContainer">
                   <input
+                    name="file"
                     type="file"
                     id="drop_zone"
                     className="FileUpload"
-                    accept=".jpg, png,.gif"
-                    onchange="handleFileSelect(this) "
+                    accept=".jpg,.png,.gif"
+                    onChange={handleFileSelect}
                   />
                   <div className="dropzoneOverlay text-muted">
+                    {image.preview && (
+                      <img
+                        src={image.preview}
+                        width="100px"
+                        height="100px"
+                        alt="uploaded file"
+                      />
+                    )}
                     <i className="fa-solid fa-cloud-arrow-up fs-2 "></i>
                     <br />
                     <br />

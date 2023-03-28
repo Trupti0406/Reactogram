@@ -31,7 +31,7 @@ const Login = () => {
           // now we need to do dispatch of an action which will have a type and a payload
           dispatch({ type: "LOGIN_SUCCESS", payload: result.data.result.user });
           setLoading(false);
-          navigate("/posts");
+          navigate("/myProfile");
         }
       })
       .catch((error) => {
