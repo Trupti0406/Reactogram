@@ -39,7 +39,7 @@ const Signup = () => {
         setLoading(false);
         Swal.fire({
           icon: "error",
-          title: "Some error occurred please try again later!",
+          title: error.response.data.error,
         });
       });
   };
