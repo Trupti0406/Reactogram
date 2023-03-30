@@ -33,7 +33,7 @@ const Navbar = () => {
               <Link className="nav-link fs-5">
                 <i className="searchIcon fa-solid fa-magnifying-glass"></i>
               </Link>
-              <Link className="nav-link fs-5">
+              <Link className="nav-link fs-5" to="/posts">
                 <i className="fa-solid fa-house"></i>
               </Link>
               {user ? (

@@ -1,13 +1,16 @@
-.profile-pic{
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
-    object-fit: cover;
+.profile-pic {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  object-fit: cover;
 }
-.location{
-    margin-top: -14px;
-    font-size: 13px;
+.location {
+  margin-top: -14px;
+  font-size: 13px;
 }
-.post-img{
-    border-radius: 14px;
+.post-img {
+  border-radius: 14px;
+  height: 12rem;
+  width: 12rem;
+  object-fit: contain;
 }

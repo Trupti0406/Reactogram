@@ -406,7 +406,7 @@ const Profile = () => {
                       placeholder="Add Caption"
                       onChange={(e) => setCaption(e.target.value)}
                     />
-                    <label for="floatingInput">Add Caption</label>
+                    <label htmlFor="floatingInput">Add Caption</label>
                   </div>
                 </div>
 
@@ -419,7 +419,7 @@ const Profile = () => {
                       placeholder="Add Location"
                       onChange={(e) => setLocation(e.target.value)}
                     />
-                    <label for="floatingInput">
+                    <label htmlFor="floatingInput">
                       <i className="fa-solid fa-location-pin pe-2"></i>Add
                       Location
                     </label>
