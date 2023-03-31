@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./Profile.css";
@@ -11,6 +11,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState({ preview: "", data: "" });
+  const [myallposts, setMyAllposts] = useState([]);
 
   const [caption, setCaption] = useState("");
   const [location, setLocation] = useState("");
@@ -46,7 +47,21 @@ const Profile = () => {
     const response = axios.post("http://localhost:5000/uploadFile", formData);
     return response;
   };
+  const getMyPosts = async () => {
+    const response = await axios.get(
+      `http://localhost:5000/allposts`,
+      CONFIG_OBJ
+    );
 
+    if (response.status === 200) {
+      setMyAllposts(response.data.posts);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Some error occurred while getting all your posts",
+      });
+    }
+  };
   const addPost = async () => {
     if (image.preview === "") {
       Swal.fire({
@@ -88,6 +103,9 @@ const Profile = () => {
       }
     }
   };
+  useEffect(() => {
+    getMyPosts();
+  }, []);
   return (
     <div className="container shadow mt-3 p-5">
       <div className="row">
