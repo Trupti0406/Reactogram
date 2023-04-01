@@ -1,11 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Card.css";
 import moreAction from "../images/more-action.PNG";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Card = (props) => {
+  // const [allposts, setAllposts] = useState([]);
+
+  const [commentBox, setCommentBox] = useState(false);
+  const [comment, setComment] = useState("");
+
   const user = useSelector((state) => state.userReducer);
 
+  const CONFIG_OBJ = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  };
+
+  //  const getAllPosts = async () => {
+  //    const response = await axios.get(`http://localhost:5000/allposts`);
+
+  //    if (response.status === 200) {
+  //      setAllposts(response.data.posts);
+  //    } else {
+  //      Swal.fire({
+  //        icon: "error",
+  //        title: "Some error occurred while getting all posts",
+  //      });
+  //    }
+  //  };
+
+  const submitComment = (postId) => {
+    console.log(comment);
+  };
+
+  const likeDislikePost = async (postId, type) => {
+    const request = { postId: postId };
+    const response = await axios.put(
+      `http://localhost:5000/${type}`,
+      request,
+      CONFIG_OBJ
+    );
+    if (response.status === 200) {
+      props.getAllPosts();
+    }
+    // return response;
+  };
   return (
     <div>
       <div className="card shadow-sm">
@@ -48,15 +90,45 @@ const Card = (props) => {
           </div>
           <div className="row">
             <div className="col-6 d-flex">
-              <i className="ps-3 fs-4 fa-regular fa-heart"></i>
-              <i className="ps-3 fs-4 fa-regular fa-comment"></i>
-              <i className="ps-3 fs-4 fa-solid fa-location-arrow"></i>
+              <i
+                onClick={() => likeDislikePost(props.postData._id, "like")}
+                className="ps-3 fs-4 fa-regular fa-heart"
+              ></i>
+              <i
+                onClick={() => likeDislikePost(props.postData._id, "unlike")}
+                className="ps-3 fs-4 fa-regular fa-thumbs-down"
+              ></i>
+              <i
+                onClick={() => setCommentBox(true)}
+                className="ps-3 fs-4 fa-regular fa-comment"
+              ></i>
+              {/* <i className="fa-light fa-thumbs-down"></i> */}
             </div>
             <div className="col-6">
-              <span className="pe-3 fs-6 fw-bold float-end">200 likes</span>
+              <span className="pe-3 fs-6 fw-bold float-end">
+                {props.postData.likes.length} likes
+              </span>
               <br />
             </div>
             <p className="mt-2 fw-semibold">{props.postData.description}</p>
+            {commentBox ? (
+              <div className="row align-items-center justify-content-center ps-3 pe-3">
+                <div className="col-10 ">
+                  <textarea
+                    onChange={(e) => setComment(e.target.value)}
+                    className="form-control"
+                  ></textarea>
+                </div>
+                <div className="col-2">
+                  <i
+                    onClick={() => submitComment(props.postData._id)}
+                    className=" btn ps-3 fs-4 fa-regular fa-paper-plane"
+                  ></i>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="row">
             <div className="col-12">

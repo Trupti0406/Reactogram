@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 // import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./Profile.css";
@@ -6,12 +6,16 @@ import horizontalMoreAction from "../images/horizontalMoreAction.PNG";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+  const user = useSelector((state) => state.userReducer);
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState({ preview: "", data: "" });
   const [myallposts, setMyAllposts] = useState([]);
+  const [postDetail, setPostDetail] = useState({});
 
   const [caption, setCaption] = useState("");
   const [location, setLocation] = useState("");
@@ -32,6 +36,16 @@ const Profile = () => {
       Authorization: "Bearer " + localStorage.getItem("token"),
     },
   };
+  const deletePost = async (postId) => {
+    const response = await axios.delete(
+      `http://localhost:5000/deletepost/${postId}`,
+      CONFIG_OBJ
+    );
+    if (response.status === 200) {
+      getMyPosts();
+      setShow(false);
+    }
+  };
   const handleFileSelect = (event) => {
     const img = {
       preview: URL.createObjectURL(event.target.files[0]),
@@ -47,9 +61,9 @@ const Profile = () => {
     const response = axios.post("http://localhost:5000/uploadFile", formData);
     return response;
   };
-  const getMyPosts = async () => {
+  const getMyPosts = useCallback(async () => {
     const response = await axios.get(
-      `http://localhost:5000/allposts`,
+      `http://localhost:5000/myallposts`,
       CONFIG_OBJ
     );
 
@@ -61,7 +75,12 @@ const Profile = () => {
         title: "Some error occurred while getting all your posts",
       });
     }
+  });
+
+  const showDetail = (mypost) => {
+    setPostDetail(mypost);
   };
+
   const addPost = async () => {
     if (image.preview === "") {
       Swal.fire({
@@ -105,7 +124,7 @@ const Profile = () => {
   };
   useEffect(() => {
     getMyPosts();
-  }, []);
+  }, [getMyPosts]);
   return (
     <div className="container shadow mt-3 p-5">
       <div className="row">
@@ -115,10 +134,10 @@ const Profile = () => {
             src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
             alt="profile-pic"
           />
-          <div className="ms-3 fs-5 fw-bold">john_doe46</div>
-          <div className="ms-3 fs-5">John Doe</div>
+          <div className="ms-3 fs-5 fw-bold">@{user.user.email}</div>
+          <div className="ms-3 fs-5">{user.user.fullName}</div>
           <div className="ms-3 fs-5">
-            UI/UX Designer @internshala | Follow @johndoe
+            UI/UX Designer @internshala | Follow @{user.user.fullName}
           </div>
           <div className="ms-3 fs-5">
             My portfolio on <Link> www.portfolio.com</Link>
@@ -127,7 +146,7 @@ const Profile = () => {
         <div className="col-md-6 d-flex flex-column justify-content-between mt-2">
           <div className="stats d-flex justify-content-center gap-4">
             <div className="count-section borderRight pe-5 fw-bold">
-              <h4>34</h4>
+              <h4>{myallposts.length}</h4>
               <p>Posts</p>
             </div>
             <div className="count-section borderRight ps-0 pe-4 fw-bold">
@@ -160,63 +179,20 @@ const Profile = () => {
       </div>
 
       <div className="row mb-4">
-        <div className="col-md-4 col-sm-12">
-          <div className="card" onClick={handleShow}>
-            <img
-              src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt=""
-              className="card-img-top"
-            />
-          </div>
-        </div>
-        <div className="col-md-4 col-sm-12">
-          <div className="card">
-            <img
-              src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt=""
-              className="card-img-top"
-            />
-          </div>
-        </div>
-        <div className="col-md-4 col-sm-12">
-          <div className="card">
-            <img
-              src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt=""
-              className="card-img-top"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="row mb-4">
-        <div className="col-md-4 col-sm-12">
-          <div className="card">
-            <img
-              src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt=""
-              className="card-img-top"
-            />
-          </div>
-        </div>
-
-        <div className="col-md-4 col-sm-12">
-          <div className="card">
-            <img
-              src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt=""
-              className="card-img-top"
-            />
-          </div>
-        </div>
-        <div className="col-md-4 col-sm-12">
-          <div className="card">
-            <img
-              src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-              alt=""
-              className="card-img-top"
-            />
-          </div>
-        </div>
+        {myallposts.map((mypost) => {
+          return (
+            <div className="col-md-4 col-sm-12" key={mypost._id}>
+              <div className="card" onClick={handleShow}>
+                <img
+                  onClick={() => showDetail(mypost)}
+                  src={mypost.image}
+                  alt={mypost.description}
+                  className="card-img-top"
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       <Modal show={show} onHide={handleClose} size="lg">
@@ -250,7 +226,7 @@ const Profile = () => {
                 <div className="carousel-inner">
                   <div className="carousel-item active">
                     <img
-                      src="https://images.unsplash.com/photo-1575881875475-31023242e3f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c3VufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                      src={postDetail.image}
                       className="d-block w-100"
                       alt="..."
                     />
@@ -307,8 +283,8 @@ const Profile = () => {
                         alt="profile-pic"
                       />
                       <div className="mt-2 ms-2">
-                        <p className="fs-6 fw-bold">_._dexter</p>
-                        <p className="location">Mumbai, India</p>
+                        <p className="fs-6 fw-bold">{postDetail.fullName}</p>
+                        <p className="location">{postDetail.location}</p>
                       </div>
                       <div className="dropdown ms-5 ">
                         <Link
@@ -326,9 +302,12 @@ const Profile = () => {
                             </Link>
                           </li>
                           <li>
-                            <Link className="dropdown-item">
-                              <i className="fa-solid fa-trash px-2"></i>Delete
-                              Post
+                            <Link
+                              className="dropdown-item"
+                              onClick={() => deletePost(postDetail._id)}
+                            >
+                              <i className="fa-solid fa-trash px-2"></i>
+                              Delete Post
                             </Link>
                           </li>
                         </ul>
@@ -342,11 +321,7 @@ const Profile = () => {
                   </div>
                   <div className="row">
                     <div className="col-12 ms-2 mt-2">
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Blanditiis dignissimos aliquid id! Ut, consequatur
-                        iusto?
-                      </p>
+                      <p>{postDetail.description}</p>
                     </div>
                   </div>
                   <div className="row">
