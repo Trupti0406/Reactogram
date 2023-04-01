@@ -19,8 +19,17 @@ const Card = (props) => {
     },
   };
 
-  const submitComment = (postId) => {
-    // console.log(comment
+  const submitComment = async (postId) => {
+    setCommentBox(false);
+    const request = { postId: postId, commentText: comment };
+    const response = await axios.put(
+      `http://localhost:5000/comment`,
+      request,
+      CONFIG_OBJ
+    );
+    if (response.status === 200) {
+      props.getAllPosts(); //refreshing the API request
+    }
   };
 
   const likeDislikePost = async (postId, type) => {
@@ -116,10 +125,27 @@ const Card = (props) => {
             ) : (
               ""
             )}
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <span className="ps-3 text-muted">2 Hours Ago</span>
+
+            {props.postData.comments.map((comment) => {
+              return (
+                <div className="row">
+                  <div className="col-12 d-flex justify-content-between">
+                    <p className="fw-semibold">{comment.commentText}</p>
+                    <p
+                      className="text-muted fst-italic"
+                      style={{ fontSize: "14px" }}
+                    >
+                      {" "}
+                      - {comment.commentedBy.fullName}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+            <div className="row">
+              <div className="col-12">
+                <span className="ps-3 text-muted">2 Hours Ago</span>
+              </div>
             </div>
           </div>
         </div>

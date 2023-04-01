@@ -11,6 +11,8 @@ const protectedRoute = require("../middlewares/protectedResource");
 router.get("/allposts", (req, res) => {
   PostModel.find()
     .populate("author", "_id fullName profileImg")
+    .populate("comments.commentedBy", "fullName ")
+
     .then((dbPosts) => {
       res.status(200).json({ posts: dbPosts });
     })
