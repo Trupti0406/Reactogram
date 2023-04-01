@@ -19,21 +19,8 @@ const Card = (props) => {
     },
   };
 
-  //  const getAllPosts = async () => {
-  //    const response = await axios.get(`http://localhost:5000/allposts`);
-
-  //    if (response.status === 200) {
-  //      setAllposts(response.data.posts);
-  //    } else {
-  //      Swal.fire({
-  //        icon: "error",
-  //        title: "Some error occurred while getting all posts",
-  //      });
-  //    }
-  //  };
-
   const submitComment = (postId) => {
-    console.log(comment);
+    // console.log(comment
   };
 
   const likeDislikePost = async (postId, type) => {
