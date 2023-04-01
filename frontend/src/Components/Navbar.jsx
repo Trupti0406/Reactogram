@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  // To see ig the user exists or noy, so that accordingly we can hide the dropdown
+  // To see if the user exists or noy, so that accordingly we can hide the dropdown
   // This is how we get data from store
   const user = useSelector((state) => state.userReducer);
 
@@ -36,7 +36,7 @@ const Navbar = () => {
               <Link className="nav-link fs-5" to="/posts">
                 <i className="fa-solid fa-house"></i>
               </Link>
-              {user ? (
+              {localStorage.getItem("token") != null ? (
                 <Link className="nav-link fs-5">
                   <i className="fa-regular fa-heart"></i>
                 </Link>
@@ -45,7 +45,7 @@ const Navbar = () => {
               )}
 
               <div className="dropdown">
-                {user ? (
+                {localStorage.getItem("token") != null ? (
                   <>
                     {" "}
                     <Link
