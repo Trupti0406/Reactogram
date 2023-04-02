@@ -2,13 +2,10 @@ import React from "react";
 import "./Navbar.css";
 import Logo from "../images/logo.PNG";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  // To see if the user exists or noy, so that accordingly we can hide the dropdown
-  // This is how we get data from store
-  const user = useSelector((state) => state.userReducer);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -23,16 +20,8 @@ const Navbar = () => {
           <Link to="/" className="navbar-brand ms-5">
             <img src={Logo} alt="logo" height="45px" />
           </Link>
-          <form className="d-flex me-sm-1 me-md-5" role="search">
-            <input
-              className="searchBox form-control me-5 text-muted"
-              type="search"
-              placeholder="Search"
-            />
+          <form className="d-flex me-sm-1 me-md-5">
             <div className="d-flex  gap-3">
-              <Link className="nav-link fs-5">
-                <i className="searchIcon fa-solid fa-magnifying-glass"></i>
-              </Link>
               <Link className="nav-link fs-5" to="/posts">
                 <i className="fa-solid fa-house"></i>
               </Link>
@@ -55,7 +44,7 @@ const Navbar = () => {
                     >
                       <img
                         className="navbar-profile-pic"
-                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                        src="https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg"
                         alt="profile-pic"
                       />
                     </Link>

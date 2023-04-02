@@ -32,6 +32,12 @@
   cursor: pointer;
 }
 
+.mypost-image {
+  width: 250px !important;
+  height: 250px !important;
+  object-fit: cover;
+}
+
 .upload-box {
   height: 330px;
   width: 330px;
@@ -53,7 +59,7 @@
   cursor: pointer;
 }
 
-.uploadInputs{
+.uploadInputs {
   border: none !important;
   border-bottom: 1px solid #ed2a7e !important;
   outline: none;
@@ -61,16 +67,16 @@
   box-shadow: none !important;
 }
 
-
 .dropzoneOverlay {
-text-align: center;
-cursor: pointer;
-margin-bottom: 50px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 50px;
 }
+
 .FileUpload {
-opacity: 0;
-/* position: relative; */
-z-index: 1;
+  opacity: 0;
+  /* position: relative; */
+  z-index: 1;
 }
 
 @media only screen and (max-width: 450px) {
@@ -85,11 +91,11 @@ z-index: 1;
   .buttons {
     justify-content: space-between !important;
   }
-  .uploadModal{
-  padding: 20px;
-}
-.upload-box {
-  height: 280px;
-  width: 285px;
-}
+  .uploadModal {
+    padding: 20px;
+  }
+  .upload-box {
+    height: 280px;
+    width: 285px;
+  }
 }

@@ -4,11 +4,12 @@ import "./Login.css";
 import socialDesktop from "../images/social-desktop.PNG";
 import socialMobile from "../images/social-mobile.PNG";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { API_BASE_URL } from "../config";
 import Swal from "sweetalert2";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +18,6 @@ const Signup = () => {
 
   const signup = (event) => {
     event.preventDefault();
-
     setLoading(true);
     const requestData = { fullName: fullName, email, password };
     axios
@@ -29,6 +29,7 @@ const Signup = () => {
             icon: "success",
             title: "User successfully registered",
           });
+          navigate("/login");
         }
         setFullName("");
         setEmail("");
@@ -72,14 +73,14 @@ const Signup = () => {
             <div className="card-body px-5">
               <h4 className="card-title mt-3 fw-bold">Sign Up</h4>
               <form onSubmit={(e) => signup(e)}>
-                <input
+                {/* <input
                   type="text"
                   className="p-2 mt-4 mb-2 form-control input-bg"
                   placeholder="Phone"
-                />
+                /> */}
                 <input
                   type="text"
-                  className="p-2 mb-2 form-control input-bg"
+                  className="p-2 mt-2 mb-2 form-control input-bg"
                   placeholder="Full Name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}

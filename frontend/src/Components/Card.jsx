@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./Card.css";
-import moreAction from "../images/more-action.PNG";
-import { useSelector } from "react-redux";
 import axios from "axios";
 
 const Card = (props) => {
@@ -9,8 +7,6 @@ const Card = (props) => {
 
   const [commentBox, setCommentBox] = useState(false);
   const [comment, setComment] = useState("");
-
-  const user = useSelector((state) => state.userReducer);
 
   const CONFIG_OBJ = {
     headers: {
@@ -62,18 +58,6 @@ const Card = (props) => {
                 <p className="location">{props.postData.location}</p>
               </div>
             </div>
-            {props.postData.author._id === user.user._id ? (
-              <div className="col-6 ">
-                <img
-                  onClick={() => props.deletePost(props.postData._id)}
-                  className="float-end fs-3 p-2 mt-2"
-                  src={moreAction}
-                  alt="More Action"
-                />
-              </div>
-            ) : (
-              ""
-            )}
           </div>
           <div className="row">
             <div className="col-12 d-flex justify-content-center">
@@ -88,7 +72,7 @@ const Card = (props) => {
             <div className="col-6 d-flex">
               <i
                 onClick={() => likeDislikePost(props.postData._id, "like")}
-                className="ps-3 fs-4 fa-regular fa-heart"
+                className="ps-3 fs-4 fa-regular fa-thumbs-up"
               ></i>
               <i
                 onClick={() => likeDislikePost(props.postData._id, "unlike")}
@@ -106,7 +90,9 @@ const Card = (props) => {
               </span>
               <br />
             </div>
-            <p className="mt-2 fw-semibold">{props.postData.description}</p>
+            <p className="ps-3 mt-2 fw-semibold">
+              {props.postData.description}
+            </p>
             {commentBox ? (
               <div className="row align-items-center justify-content-center ps-3 pe-3">
                 <div className="col-10 ">
@@ -128,7 +114,7 @@ const Card = (props) => {
 
             {props.postData.comments.map((comment) => {
               return (
-                <div className="row">
+                <div className="row" key={comment._id}>
                   <div className="col-12 d-flex justify-content-between">
                     <p className="fw-semibold">{comment.commentText}</p>
                     <p

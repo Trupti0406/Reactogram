@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./Profile.css";
-import horizontalMoreAction from "../images/horizontalMoreAction.PNG";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -43,8 +41,8 @@ const Profile = () => {
     );
     if (response.status === 200) {
       getMyPosts();
-      setShow(false);
     }
+    setShow(false);
   };
   const handleFileSelect = (event) => {
     const img = {
@@ -61,6 +59,7 @@ const Profile = () => {
     const response = axios.post("http://localhost:5000/uploadFile", formData);
     return response;
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getMyPosts = useCallback(async () => {
     const response = await axios.get(
       `http://localhost:5000/myallposts`,
@@ -130,16 +129,16 @@ const Profile = () => {
       <div className="row">
         <div className="col-md-6 d-flex flex-column">
           <img
-            className="profile-image p-1"
-            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+            className="profile-image p-1 border"
+            src="https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg"
             alt="profile-pic"
           />
-          <div className="ms-3 fs-5 fw-bold">@{user.user.email}</div>
+          <div className="ms-3 fs-5 fw-bold">{user.user.email}</div>
           <div className="ms-3 fs-5">{user.user.fullName}</div>
-          <div className="ms-3 fs-5">
-            UI/UX Designer @internshala | Follow @{user.user.fullName}
+          <div className="ms-3 fs-6">
+            UI/UX Designer | Follow <Link>@{user.user.fullName}</Link>
           </div>
-          <div className="ms-3 fs-5">
+          <div className="ms-3 fs-6">
             My portfolio on <Link> www.portfolio.com</Link>
           </div>
         </div>
@@ -181,13 +180,13 @@ const Profile = () => {
       <div className="row mb-4">
         {myallposts.map((mypost) => {
           return (
-            <div className="col-md-4 col-sm-12" key={mypost._id}>
-              <div className="card" onClick={handleShow}>
+            <div className="col-lg-4 col-md-6 col-sm-12 " key={mypost._id}>
+              <div onClick={handleShow} className="">
                 <img
                   onClick={() => showDetail(mypost)}
                   src={mypost.image}
                   alt={mypost.description}
-                  className="card-img-top"
+                  className="mypost-image p-2 rounded"
                 />
               </div>
             </div>
@@ -200,117 +199,40 @@ const Profile = () => {
         <Modal.Body>
           <div className="row">
             <div className="col-md-6">
-              <div id="carouselExampleIndicators" className="carousel slide">
-                <div className="carousel-indicators">
-                  <button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="0"
-                    className="active"
-                    aria-current="true"
-                    aria-label="Slide 1"
-                  ></button>
-                  <button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="1"
-                    aria-label="Slide 2"
-                  ></button>
-                  <button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="2"
-                    aria-label="Slide 3"
-                  ></button>
-                </div>
-                <div className="carousel-inner">
-                  <div className="carousel-item active">
-                    <img
-                      src={postDetail.image}
-                      className="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div className="carousel-item">
-                    <img
-                      src="https://images.unsplash.com/photo-1477005264461-b0e201668d92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                      className="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div className="carousel-item">
-                    <img
-                      src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                      className="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                </div>
-                <button
-                  className="carousel-control-prev"
-                  type="button"
-                  data-bs-target="#carouselExampleIndicators"
-                  data-bs-slide="prev"
-                >
-                  <span
-                    className="carousel-control-prev-icon"
-                    aria-hidden="true"
-                  ></span>
-                  <span className="visually-hidden">Previous</span>
-                </button>
-                <button
-                  className="carousel-control-next"
-                  type="button"
-                  data-bs-target="#carouselExampleIndicators"
-                  data-bs-slide="next"
-                >
-                  <span
-                    className="carousel-control-next-icon"
-                    aria-hidden="true"
-                  ></span>
-                  <span className="visually-hidden">Next</span>
-                </button>
-              </div>
+              <img
+                src={postDetail.image}
+                className="d-block w-100"
+                alt="Uploaded post"
+              />
             </div>
             <div className="col-md-6">
               <div className="card shadow-sm">
                 <div className="card-body px-2">
                   <div className="row">
-                    <div className="col-6 d-flex">
-                      <img
-                        className="profile-pic p-1"
-                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                        alt="profile-pic"
-                      />
-                      <div className="mt-2 ms-2">
-                        <p className="fs-6 fw-bold">{postDetail.fullName}</p>
-                        <p className="location">{postDetail.location}</p>
+                    <div
+                      className="col-12 d-flex"
+                      style={{ justifyContent: "space-between" }}
+                    >
+                      <div className="d-flex ">
+                        <img
+                          className="profile-pic p-1"
+                          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="profile-pic"
+                        />
+                        <div className="mt-2 ms-2">
+                          <p className="fs-6 fw-bold">{user.user.fullName}</p>
+                          {/* {console.log(postDetail)} */}
+                          <p className="location">{postDetail.location}</p>
+                        </div>
                       </div>
-                      <div className="dropdown ms-5 ">
+                      <div>
                         <Link
-                          className="btn"
-                          role="button"
-                          data-bs-toggle="dropdown"
+                          className="btn btn-danger px-2"
+                          onClick={() => deletePost(postDetail._id)}
                         >
-                          <img alt="more action" src={horizontalMoreAction} />
+                          <i className="fa-solid fa-trash me-2 "></i>
+                          Delete Post
                         </Link>
-                        <ul className="dropdown-menu">
-                          <li>
-                            <Link className="dropdown-item">
-                              <i className="fa-regular fa-pen-to-square px-2"></i>
-                              Edit Post
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              className="dropdown-item"
-                              onClick={() => deletePost(postDetail._id)}
-                            >
-                              <i className="fa-solid fa-trash px-2"></i>
-                              Delete Post
-                            </Link>
-                          </li>
-                        </ul>
                       </div>
                     </div>
                   </div>
@@ -324,7 +246,7 @@ const Profile = () => {
                       <p>{postDetail.description}</p>
                     </div>
                   </div>
-                  <div className="row">
+                  {/* <div className="row">
                     <div className="col-6 d-flex">
                       <i className="ps-2 fs-4 fa-regular fa-heart"></i>
                       <i className="ps-2 fs-4 fa-regular fa-comment"></i>
@@ -333,7 +255,7 @@ const Profile = () => {
                     <div className="col-12 mt-3 ms-2">
                       <span className="pe-3 fs-6 fw-bold ">200 likes</span>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
