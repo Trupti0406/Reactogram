@@ -5,7 +5,6 @@ import socialDesktop from "../images/social-desktop.PNG";
 import socialMobile from "../images/social-mobile.PNG";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { API_BASE_URL } from "../config";
 import Swal from "sweetalert2";
 
 const Signup = () => {

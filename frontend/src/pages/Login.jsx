@@ -4,7 +4,6 @@ import socialMobile from "../images/social-mobile.PNG";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-// import { API_BASE_URL } from "../config";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 

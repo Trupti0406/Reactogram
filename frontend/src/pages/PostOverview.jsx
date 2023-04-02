@@ -44,7 +44,7 @@ const PostOverview = () => {
       <div className="row">
         {allposts.map((post) => {
           return (
-            <div className="col-md-4 mb-2" key={post._id}>
+            <div className="col-md-6 col-lg-4 mb-2" key={post._id}>
               <Card
                 postData={post}
                 deletePost={deletePost}

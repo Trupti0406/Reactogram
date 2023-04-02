@@ -38,6 +38,10 @@
   object-fit: cover;
 }
 
+.delete-modal-image {
+  height: 200px;
+  width: 200px;
+}
 .upload-box {
   height: 330px;
   width: 330px;

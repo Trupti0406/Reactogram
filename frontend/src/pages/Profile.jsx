@@ -197,15 +197,15 @@ const Profile = () => {
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <div className="row">
-            <div className="col-md-6">
+          <div className="row ">
+            <div className="col-lg-6 mb-2 d-flex justify-content-center">
               <img
                 src={postDetail.image}
-                className="d-block w-100"
+                className="d-block delete-modal-image"
                 alt="Uploaded post"
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-lg-6 mb-2">
               <div className="card shadow-sm">
                 <div className="card-body px-2">
                   <div className="row">
@@ -221,7 +221,6 @@ const Profile = () => {
                         />
                         <div className="mt-2 ms-2">
                           <p className="fs-6 fw-bold">{user.user.fullName}</p>
-                          {/* {console.log(postDetail)} */}
                           <p className="location">{postDetail.location}</p>
                         </div>
                       </div>
@@ -237,25 +236,10 @@ const Profile = () => {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-12">
-                      <span className="ps-2 text-muted">2 Hours Ago</span>
-                    </div>
-                  </div>
-                  <div className="row">
                     <div className="col-12 ms-2 mt-2">
                       <p>{postDetail.description}</p>
                     </div>
                   </div>
-                  {/* <div className="row">
-                    <div className="col-6 d-flex">
-                      <i className="ps-2 fs-4 fa-regular fa-heart"></i>
-                      <i className="ps-2 fs-4 fa-regular fa-comment"></i>
-                      <i className="ps-2 fs-4 fa-solid fa-location-arrow"></i>
-                    </div>
-                    <div className="col-12 mt-3 ms-2">
-                      <span className="pe-3 fs-6 fw-bold ">200 likes</span>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>

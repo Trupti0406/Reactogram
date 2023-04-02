@@ -12,5 +12,5 @@
   border-radius: 14px;
   height: 12rem;
   width: 12rem;
-  object-fit: contain;
+  object-fit: cover;
 }

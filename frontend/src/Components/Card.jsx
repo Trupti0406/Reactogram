@@ -45,7 +45,7 @@ const Card = (props) => {
       <div className="card shadow-sm">
         <div className="card-body px-2">
           <div className="row">
-            <div className="col-6 d-flex">
+            <div className="col d-flex">
               <img
                 className="profile-pic p-1"
                 src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
@@ -90,9 +90,12 @@ const Card = (props) => {
               </span>
               <br />
             </div>
-            <p className="ps-3 mt-2 fw-semibold">
-              {props.postData.description}
-            </p>
+            <div className="col-12">
+              <hr />
+              <p className="ps-3 mt-2 fw-semibold">
+                {props.postData.description}
+              </p>
+            </div>
             {commentBox ? (
               <div className="row align-items-center justify-content-center ps-3 pe-3">
                 <div className="col-10 ">
