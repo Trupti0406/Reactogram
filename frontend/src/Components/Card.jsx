@@ -48,7 +48,7 @@ const Card = (props) => {
             <div className="col d-flex">
               <img
                 className="profile-pic p-1"
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                src="https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg"
                 alt="profile-pic"
               />
               <div className="mt-2 ms-2">
