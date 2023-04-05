@@ -80,12 +80,12 @@ router.delete("/deletepost/:postId", protectedRoute, (req, res) => {
     });
 });
 
-// Like or unlike post API, updare
+// Like or unlike post API, update
 router.put("/like", protectedRoute, (req, res) => {
   PostModel.findByIdAndUpdate(
     req.body.postId,
     {
-      $push: { likes: req.user._id },
+      $addToSet: { likes: req.user._id },
     },
     {
       new: true, //returns the updated recored i.e. liked
@@ -106,11 +106,10 @@ router.put("/unlike", protectedRoute, (req, res) => {
   PostModel.findByIdAndUpdate(
     req.body.postId,
     {
-      // USing pull here because our likes array has already been created
       $pull: { likes: req.user._id },
     },
     {
-      new: true, //returns the updated recored i.e. liked
+      new: true, //returns updated record
     }
   )
     .populate("author", "_id fullName")

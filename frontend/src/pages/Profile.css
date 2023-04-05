@@ -102,4 +102,8 @@
     height: 280px;
     width: 285px;
   }
+  .post-detail-modal {
+    width: 93%;
+    margin: auto;
+  }
 }

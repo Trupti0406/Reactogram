@@ -1,4 +1,0 @@
-To make our application secure, we should not make the password visible in the database,
-for that we'll install a library called  "bcryptjs"
-
-for token based encryption we'll install "jsonwebtoken"

@@ -194,7 +194,12 @@ const Profile = () => {
         })}
       </div>
 
-      <Modal show={show} onHide={handleClose} size="lg">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size="lg"
+        className="post-detail-modal"
+      >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <div className="row ">
@@ -285,7 +290,7 @@ const Profile = () => {
                     <br />
                     <br />
                     <p
-                      className="fs-5 fw-semibold"
+                      className="fs-5 fw-semibold p-2"
                       style={{ color: "#ed2a7e" }}
                     >
                       Upload Photo from your device

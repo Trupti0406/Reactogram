@@ -14,3 +14,9 @@
   width: 12rem;
   object-fit: cover;
 }
+
+.fa-thumbs-up:active,
+.fa-thumbs-down:active,
+.fa-comment:active {
+  color: blue;
+}

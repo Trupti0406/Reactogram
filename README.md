@@ -1,4 +1,4 @@
-# Reactogram (Instagram clone built using MERN stack)
+# Reactogram (Instagram clone using MERN stack)
 
 ### Live Demo:
 

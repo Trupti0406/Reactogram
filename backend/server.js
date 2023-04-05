@@ -4,6 +4,7 @@ const PORT = 5000;
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { MONGODB_URL } = require("./config");
+const path = require("path");
 
 global.__basedir = __dirname;
 mongoose.connect(MONGODB_URL);
@@ -25,6 +26,14 @@ app.use(express.json());
 app.use(require("./routes/user_route"));
 app.use(require("./routes/post_route"));
 app.use(require("./routes/file_route"));
+
+// accessing static files for hosting purpose
+app.use(express.static(path.join(__dirname, "../frontend/build"))); //configuring
+//accessing
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log("Server started");
