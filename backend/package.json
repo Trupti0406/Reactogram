@@ -4,11 +4,7 @@
   "description": "This is backend for reactogram application.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "server": "nodemon serevr.js",
-    "client": "npm start --prefix ./client ",
-    "dev": "concurrently \"npm start\" \"npm run client\""
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",

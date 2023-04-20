@@ -36,7 +36,7 @@ const Card = (props) => {
       CONFIG_OBJ
     );
     if (response.status === 200) {
-      props.getAllPosts();
+      props.getAllPosts(); //get all post again after the process
     }
     // return response;
   };

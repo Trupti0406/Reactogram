@@ -28,12 +28,12 @@ app.use(require("./routes/post_route"));
 app.use(require("./routes/file_route"));
 
 // accessing static files for hosting purpose
-app.use(express.static(path.join(__dirname, "../frontend/build"))); //configuring
-//accessing
+// app.use(express.static(path.join(__dirname, "../frontend/build"))); //configuring
+// //accessing
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+// });
 
 app.listen(PORT, () => {
   console.log("Server started");

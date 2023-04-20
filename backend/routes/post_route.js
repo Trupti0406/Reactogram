@@ -85,7 +85,7 @@ router.put("/like", protectedRoute, (req, res) => {
   PostModel.findByIdAndUpdate(
     req.body.postId,
     {
-      $addToSet: { likes: req.user._id },
+      $addToSet: { likes: req.user._id }, //addToSet will only allow a user to like the post once
     },
     {
       new: true, //returns the updated recored i.e. liked
