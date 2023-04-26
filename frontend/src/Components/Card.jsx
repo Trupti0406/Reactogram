@@ -19,7 +19,7 @@ const Card = (props) => {
     setCommentBox(false);
     const request = { postId: postId, commentText: comment };
     const response = await axios.put(
-      `http://localhost:5000/comment`,
+      `https://reactogram-backend-9msk.onrender.com/comment`,
       request,
       CONFIG_OBJ
     );
@@ -31,7 +31,7 @@ const Card = (props) => {
   const likeDislikePost = async (postId, type) => {
     const request = { postId: postId };
     const response = await axios.put(
-      `http://localhost:5000/${type}`,
+      `https://reactogram-backend-9msk.onrender.com/${type}`,
       request,
       CONFIG_OBJ
     );

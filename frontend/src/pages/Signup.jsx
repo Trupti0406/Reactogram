@@ -20,7 +20,7 @@ const Signup = () => {
     setLoading(true);
     const requestData = { fullName: fullName, email, password };
     axios
-      .post(`http://localhost:5000/signup`, requestData)
+      .post(`https://reactogram-backend-9msk.onrender.com/signup`, requestData)
       .then((result) => {
         if (result.status === 201) {
           setLoading(false);

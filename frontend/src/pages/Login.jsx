@@ -21,7 +21,7 @@ const Login = () => {
       password,
     };
     axios
-      .post(`http://localhost:5000/login`, requestData)
+      .post(`https://reactogram-backend-9msk.onrender.com/login`, requestData)
       .then((result) => {
         if (result.status === 200) {
           setLoading(false);

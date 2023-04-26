@@ -14,7 +14,9 @@ const PostOverview = () => {
   };
 
   const getAllPosts = async () => {
-    const response = await axios.get(`http://localhost:5000/allposts`);
+    const response = await axios.get(
+      `https://reactogram-backend-9msk.onrender.com/allposts`
+    );
 
     if (response.status === 200) {
       setAllposts(response.data.posts);
@@ -28,7 +30,7 @@ const PostOverview = () => {
 
   const deletePost = async (postId) => {
     const response = await axios.delete(
-      `http://localhost:5000/deletepost/${postId}`,
+      `https://reactogram-backend-9msk.onrender.com/deletepost/${postId}`,
       CONFIG_OBJ
     );
     if (response.status === 200) {

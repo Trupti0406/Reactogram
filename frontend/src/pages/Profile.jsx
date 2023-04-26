@@ -36,7 +36,7 @@ const Profile = () => {
   };
   const deletePost = async (postId) => {
     const response = await axios.delete(
-      `http://localhost:5000/deletepost/${postId}`,
+      `https://reactogram-backend-9msk.onrender.com/deletepost/${postId}`,
       CONFIG_OBJ
     );
     if (response.status === 200) {
@@ -56,13 +56,16 @@ const Profile = () => {
   const handleImageUpload = async () => {
     let formData = new FormData();
     formData.append("file", image.data);
-    const response = axios.post("http://localhost:5000/uploadFile", formData);
+    const response = axios.post(
+      "https://reactogram-backend-9msk.onrender.com/uploadFile",
+      formData
+    );
     return response;
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getMyPosts = useCallback(async () => {
     const response = await axios.get(
-      `http://localhost:5000/myallposts`,
+      `https://reactogram-backend-9msk.onrender.com/myallposts`,
       CONFIG_OBJ
     );
 
@@ -102,11 +105,11 @@ const Profile = () => {
       const request = {
         description: caption,
         location: location,
-        image: `http://localhost:5000/files/${imgRes.data.fileName}`,
+        image: `https://reactogram-backend-9msk.onrender.com/files/${imgRes.data.fileName}`,
       };
       // write api call to create post
       const postResponse = await axios.post(
-        `http://localhost:5000/createpost`,
+        `https://reactogram-backend-9msk.onrender.com/createpost`,
         request,
         CONFIG_OBJ
       );
