@@ -119,7 +119,7 @@ const Card = (props) => {
               return (
                 <div className="row" key={comment._id}>
                   <div className="col-12 d-flex justify-content-between">
-                    <p className="fw-semibold">{comment.commentText}</p>
+                    <p>{comment.commentText}</p>
                     <p
                       className="text-muted fst-italic"
                       style={{ fontSize: "14px" }}
